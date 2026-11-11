@@ -9,6 +9,10 @@ export type AppRoute = RouteObject & {
 export const routes: AppRoute[] = [
   {
     index: true,
-    lazy: () => import(`./pages/index`)
+    lazy: () => import('./pages/index')
+  },
+  {
+    path: '/login',
+    lazy: () => import('./pages/login')
   }
 ];
