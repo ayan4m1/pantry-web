@@ -10,7 +10,7 @@ const navRoutes = routes.filter((route) => route.path && route.handle?.title);
 export default function Layout() {
   return (
     <Fragment>
-      <Navbar expand="lg" variant="dark">
+      <Navbar expand="lg">
         <Container>
           <Navbar.Brand>
             <Nav.Link as={Link} to="/">
