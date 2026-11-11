@@ -2,8 +2,8 @@ import globals from 'globals';
 import eslint from '@eslint/js';
 import { configs } from 'typescript-eslint';
 import { defineConfig } from 'eslint/config';
-import reactPlugin from 'eslint-plugin-react';
-import reactHooksPlugin from 'eslint-plugin-react-hooks';
+import { configs as reactConfigs } from 'eslint-plugin-react';
+import { configs as hookConfigs } from 'eslint-plugin-react-hooks';
 import { flatConfigs as importConfigs } from 'eslint-plugin-import-x';
 import prettierPlugin from 'eslint-plugin-prettier/recommended';
 
@@ -13,8 +13,8 @@ export default defineConfig(
   importConfigs.recommended,
   importConfigs.react,
   importConfigs.typescript,
-  reactPlugin.configs.flat['recommended'],
-  reactHooksPlugin.configs.flat['recommended-latest'],
+  reactConfigs.flat['recommended'],
+  hookConfigs.flat['recommended-latest'],
   {
     languageOptions: {
       globals: globals.browser
