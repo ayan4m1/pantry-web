@@ -20,7 +20,7 @@ export const Component = () => {
         <Card.Title>Login</Card.Title>
         <Form onSubmit={handleSubmit}>
           <Form.Group>
-            <Form.Label htmlFor="username">Username:</Form.Label>
+            <Form.Label htmlFor="username">Username</Form.Label>
             <Form.Control
               id="username"
               name="username"
@@ -30,7 +30,7 @@ export const Component = () => {
             />
           </Form.Group>
           <Form.Group>
-            <Form.Label htmlFor="password">Password:</Form.Label>
+            <Form.Label htmlFor="password">Password</Form.Label>
             <Form.Control
               id="password"
               name="password"
