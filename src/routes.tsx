@@ -12,7 +12,7 @@ export const routes: AppRoute[] = [
     lazy: () => import('./pages/index')
   },
   {
-    path: '/login',
-    lazy: () => import('./pages/login')
+    path: 'households',
+    lazy: () => import('./pages/households')
   }
 ];

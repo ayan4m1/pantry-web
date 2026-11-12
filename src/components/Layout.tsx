@@ -1,6 +1,7 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
+import { useAuth } from 'react-oidc-context';
 import { Link, Outlet } from 'react-router-dom';
-import { Container, Nav, Navbar } from 'react-bootstrap';
+import { Card, Container, Nav, Navbar } from 'react-bootstrap';
 
 import { routes } from '../routes';
 
@@ -8,6 +9,32 @@ import { routes } from '../routes';
 const navRoutes = routes.filter((route) => route.path && route.handle?.title);
 
 export default function Layout() {
+  const auth = useAuth();
+
+  useEffect(() => {
+    if (!auth.isLoading && !auth.isAuthenticated && !auth.activeNavigator) {
+      // Remember where the user was going, so you can send them back after login
+      auth.signinRedirect({ state: { returnTo: window.location.pathname } });
+    }
+  }, [auth]);
+
+  if (auth.error) {
+    return (
+      <Card body>
+        <Card.Title>Sign-in failed</Card.Title>
+        {auth.error.message}
+      </Card>
+    );
+  }
+
+  if (!auth.isAuthenticated) {
+    return (
+      <Card body>
+        <Card.Title>Redirecting...</Card.Title>Redirecting to sign in…
+      </Card>
+    );
+  }
+
   return (
     <Fragment>
       <Navbar expand="lg">
@@ -22,14 +49,9 @@ export default function Layout() {
             <Nav>
               {navRoutes.map((route) => (
                 <Nav.Link as={Link} key={route.path} to={`/${route.path}`}>
-                  {route.handle?.title}
+                  {route.handle.title}
                 </Nav.Link>
               ))}
-            </Nav>
-            <Nav className="ms-auto">
-              <Nav.Link as={Link} to="/login">
-                Login
-              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
