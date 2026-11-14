@@ -13,6 +13,9 @@ export const routes: AppRoute[] = [
   },
   {
     path: 'households',
-    lazy: () => import('./pages/households')
+    lazy: () => import('./pages/households'),
+    handle: {
+      title: 'Households'
+    }
   }
 ];

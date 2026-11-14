@@ -17,7 +17,7 @@ export async function apiFetch<T>(
   token: string | undefined,
   init: RequestInit = {}
 ): Promise<T> {
-  const res = await fetch(`http://localhost:5100/api${path}`, {
+  const res = await fetch(`http://localhost/api${path}`, {
     ...init,
     headers: {
       'Content-Type': 'application/json',

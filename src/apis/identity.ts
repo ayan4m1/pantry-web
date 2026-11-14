@@ -14,7 +14,7 @@ export const identityKeys = {
 export const useMe = () => useApiQuery<Me>(identityKeys.me, '/me');
 
 export const useHouseholds = () =>
-  useApiQuery<Household[]>(identityKeys.households, '/households');
+  useApiQuery<Household[]>(identityKeys.households, '/identity/household');
 
 // body
 export function useCreateHousehold() {
