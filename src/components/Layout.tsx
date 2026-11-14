@@ -1,7 +1,7 @@
 import { Fragment, useEffect } from 'react';
-import { useAuth } from 'react-oidc-context';
+import { hasAuthParams, useAuth } from 'react-oidc-context';
 import { Link, Outlet } from 'react-router-dom';
-import { Card, Container, Nav, Navbar } from 'react-bootstrap';
+import { Button, Card, Container, Nav, Navbar } from 'react-bootstrap';
 
 import { routes } from '../routes';
 
@@ -12,7 +12,15 @@ export default function Layout() {
   const auth = useAuth();
 
   useEffect(() => {
-    if (!auth.isLoading && !auth.isAuthenticated && !auth.activeNavigator) {
+    // don't redirect while a callback is pending or after one failed - otherwise
+    // a callback error immediately triggers another login and we loop forever
+    if (
+      !hasAuthParams() &&
+      !auth.isLoading &&
+      !auth.isAuthenticated &&
+      !auth.activeNavigator &&
+      !auth.error
+    ) {
       // Remember where the user was going, so you can send them back after login
       auth.signinRedirect({ state: { returnTo: window.location.pathname } });
     }
@@ -22,7 +30,8 @@ export default function Layout() {
     return (
       <Card body>
         <Card.Title>Sign-in failed</Card.Title>
-        {auth.error.message}
+        <Card.Text>{auth.error.message}</Card.Text>
+        <Button onClick={() => auth.signinRedirect()}>Try again</Button>
       </Card>
     );
   }
