@@ -21,7 +21,7 @@ export default function Layout() {
       !auth.activeNavigator &&
       !auth.error
     ) {
-      // Remember where the user was going, so you can send them back after login
+      // remember where the user was going, so you can send them back after login
       auth.signinRedirect({ state: { returnTo: window.location.pathname } });
     }
   }, [auth]);
