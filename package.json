@@ -7,7 +7,8 @@
   "scripts": {
     "prepare": "husky",
     "build": "cross-env NODE_ENV=production webpack",
-    "start": "cross-env NODE_ENV=development webpack serve"
+    "start": "cross-env NODE_ENV=development webpack serve",
+    "generate:api": "openapi-ts"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^7.3.1",
@@ -29,6 +30,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9",
+    "@hey-api/openapi-ts": "^0.99.0",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "autoprefixer": "^10.6.2",

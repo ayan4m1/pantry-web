@@ -15,10 +15,13 @@ import SuspenseFallback from './components/SuspenseFallback';
 import ErrorBoundary from './components/ErrorBoundary';
 import { routes } from './routes';
 import { ApiError } from './utils/api';
+import { setupClients } from './utils/clients';
 
 const rootElem = document.getElementById('root');
 
 if (rootElem) {
+  setupClients();
+
   const client = new QueryClient({
     defaultOptions: {
       queries: {

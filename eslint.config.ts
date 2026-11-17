@@ -8,6 +8,7 @@ import { flatConfigs as importConfigs } from 'eslint-plugin-import-x';
 import prettierPlugin from 'eslint-plugin-prettier/recommended';
 
 export default defineConfig(
+  { ignores: ['src/client/'] },
   eslint.configs.recommended,
   ...configs.recommended,
   importConfigs.recommended,

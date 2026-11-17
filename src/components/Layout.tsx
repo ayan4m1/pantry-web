@@ -4,12 +4,26 @@ import { Link, Outlet } from 'react-router-dom';
 import { Button, Card, Container, Nav, Navbar } from 'react-bootstrap';
 
 import { routes } from '../routes';
+import { setAuthHandlers } from '../utils/api';
 
 // only titled routes get a nav entry - the index route is reachable via the brand
 const navRoutes = routes.filter((route) => route.path && route.handle?.title);
 
 export default function Layout() {
   const auth = useAuth();
+
+  // assigned during render rather than in an effect: child effects run first,
+  // so pages would otherwise fire their first queries without a token
+  setAuthHandlers({
+    getToken: () => auth.user?.access_token,
+    renew: async () => {
+      const renewed = await auth.signinSilent().catch(() => null);
+      if (renewed) return renewed.access_token;
+
+      await auth.signinRedirect();
+      return null;
+    }
+  });
 
   useEffect(() => {
     // don't redirect while a callback is pending or after one failed - otherwise
@@ -50,7 +64,7 @@ export default function Layout() {
         <Container>
           <Navbar.Brand>
             <Nav.Link as={Link} to="/">
-              pantry-web
+              Pantry
             </Nav.Link>
           </Navbar.Brand>
           <Navbar.Toggle />
