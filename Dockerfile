@@ -15,6 +15,8 @@ RUN npm install --global corepack@latest && \
 
 RUN yarn install --immutable
 
+RUN yarn generate:api
+
 RUN yarn run build
 
 FROM nginx:alpine
