@@ -7,6 +7,7 @@ import {
   listHouseholdsOptions,
   listHouseholdsQueryKey
 } from '../client/identity/@tanstack/react-query.gen';
+import { Link } from 'react-router-dom';
 
 export const Component = () => {
   const queryClient = useQueryClient();
@@ -30,7 +31,9 @@ export const Component = () => {
       <h1>Your households</h1>
       <ul>
         {households.map((h) => (
-          <li key={h.id}>{h.name}</li>
+          <li key={h.id}>
+            <Link to={`/households/${h.id}`}>{h.name}</Link>
+          </li>
         ))}
       </ul>
       <Button
