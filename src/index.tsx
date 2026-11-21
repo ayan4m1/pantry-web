@@ -26,7 +26,8 @@ if (rootElem) {
     defaultOptions: {
       queries: {
         retry: (failureCount, err) =>
-          !(err instanceof ApiError && err.status < 500) && failureCount < 3
+          !(err instanceof ApiError && err.status < 500) && failureCount < 3,
+        staleTime: 30000
       }
     }
   });
