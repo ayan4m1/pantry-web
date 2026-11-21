@@ -35,7 +35,7 @@ export const Component = () => {
       </ul>
       <Button
         disabled={createHousehold.isPending}
-        onClick={() => createHousehold.mutate({ query: { name: 'Home' } })}
+        onClick={() => createHousehold.mutate({ body: { name: 'Test' } })}
       >
         Add
       </Button>
