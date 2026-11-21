@@ -6,8 +6,8 @@
   "license": "MIT",
   "scripts": {
     "prepare": "husky",
-    "build": "cross-env NODE_ENV=production webpack",
-    "start": "cross-env NODE_ENV=development webpack serve",
+    "build": "yarn generate:api && cross-env NODE_ENV=production webpack",
+    "start": "yarn generate:api && cross-env NODE_ENV=development webpack serve",
     "generate:api": "openapi-ts"
   },
   "dependencies": {
