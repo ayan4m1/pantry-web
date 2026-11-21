@@ -1,6 +1,6 @@
 import { defineConfig } from '@hey-api/openapi-ts';
 
-const services = ['identity', 'inventory'] as const;
+const services = ['identity', 'inventory', 'shopping'] as const;
 
 export default defineConfig(
   services.map((service) => ({
