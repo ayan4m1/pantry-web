@@ -7,7 +7,7 @@ import {
   getHouseholdOptions,
   getHouseholdQueryKey,
   removeHouseholdMemberMutation
-} from '../client/identity/@tanstack/react-query.gen';
+} from '../../client/identity/@tanstack/react-query.gen';
 
 export const Component = () => {
   const queryClient = useQueryClient();
