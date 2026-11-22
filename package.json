@@ -4,6 +4,7 @@
   "description": "The web frontend for Pantry",
   "author": "ayan4m1 <andrew@bulletlogic.com>",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "prepare": "husky",
     "build": "yarn generate:api && cross-env NODE_ENV=production webpack",
