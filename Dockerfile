@@ -8,6 +8,10 @@ COPY . /usr/share/pantry-web
 
 WORKDIR /usr/share/pantry-web
 
+COPY --from=identity-spec /app/openapi/Identity.json ./openapi/
+COPY --from=inventory-spec /app/openapi/Inventory.json ./openapi/
+COPY --from=shopping-spec /app/openapi/Shopping.json ./openapi/
+
 ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
 
 RUN npm install --global corepack@latest && \
