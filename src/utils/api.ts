@@ -46,7 +46,9 @@ async function authedFetch(
   return token ? fetch(withToken(retry, token)) : res;
 }
 
-export const createServiceConfig = (service: 'identity' | 'inventory') => ({
+export const createServiceConfig = (
+  service: 'identity' | 'inventory' | 'shopping'
+) => ({
   baseUrl: `${apiBaseUrl}/${service}`,
   fetch: authedFetch
 });
