@@ -16,7 +16,7 @@ export const Component = () => {
     ...removeHouseholdMemberMutation(),
     onSuccess: () =>
       queryClient.invalidateQueries({
-        queryKey: getHouseholdQueryKey({ path: { id: id ?? '' } })
+        queryKey: getHouseholdQueryKey({ path: { id: id! } })
       })
   });
   const {
@@ -24,7 +24,7 @@ export const Component = () => {
     isPending,
     error
   } = useQuery({
-    ...getHouseholdOptions({ path: { id: id ?? '' } }),
+    ...getHouseholdOptions({ path: { id: id! } }),
     enabled: Boolean(id)
   });
 
